@@ -123,6 +123,90 @@
 			.results-table tr:nth-child(even) td { background: #f9f6f0; }
 			.results-table .champion { color: var(--gold); font-weight: bold; }
 
+			/* ── Top Navigation Bar ── */
+			#topnav {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 9999;
+				background: var(--navy);
+				border-bottom: 2px solid var(--gold);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 2em;
+				height: 52px;
+				font-family: Georgia, 'Times New Roman', serif;
+			}
+			#topnav .site-title {
+				color: var(--gold);
+				font-size: 0.95em;
+				font-weight: bold;
+				letter-spacing: 0.08em;
+				text-decoration: none;
+				white-space: nowrap;
+			}
+			#topnav ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				gap: 0;
+			}
+			#topnav ul li a {
+				color: #ccc;
+				text-decoration: none;
+				font-size: 0.78em;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				padding: 0 1.1em;
+				line-height: 52px;
+				display: block;
+				transition: color 0.2s, background 0.2s;
+				border: none;
+			}
+			#topnav ul li a:hover {
+				color: var(--gold);
+				background: rgba(255,255,255,0.05);
+			}
+			/* Push page content down so nav doesn't overlap */
+			#wrapper { padding-top: 52px; }
+
+			/* Hamburger for mobile */
+			#nav-toggle {
+				display: none;
+				background: none;
+				border: none;
+				cursor: pointer;
+				padding: 0;
+				flex-direction: column;
+				gap: 5px;
+			}
+			#nav-toggle span {
+				display: block;
+				width: 24px;
+				height: 2px;
+				background: var(--gold);
+			}
+			@media (max-width: 768px) {
+				#nav-toggle { display: flex; }
+				#topnav ul {
+					display: none;
+					flex-direction: column;
+					position: absolute;
+					top: 52px;
+					left: 0;
+					right: 0;
+					background: var(--navy);
+					border-bottom: 2px solid var(--gold);
+					padding: 0.5em 0;
+				}
+				#topnav ul.open { display: flex; }
+				#topnav ul li a { line-height: 2.8em; padding: 0 2em; }
+				#topnav .site-title { font-size: 0.85em; }
+			}
+
 			/* Footer tweak */
 			#footer { background: var(--navy); color: #aaa; }
 			#footer h3 { color: var(--gold); font-family: Georgia, serif; }
@@ -229,13 +313,31 @@
 	</head>
 	<body class="is-preload">
 
+		<!-- Top Navigation -->
+		<nav id="topnav">
+			<a href="#banner" class="site-title smooth-scroll-middle">The Hartpanoag Classic</a>
+			<button id="nav-toggle" aria-label="Toggle menu">
+				<span></span><span></span><span></span>
+			</button>
+			<ul id="nav-menu">
+				<li><a href="#overview" class="smooth-scroll-middle">Overview</a></li>
+				<li><a href="#format" class="smooth-scroll-middle">Format</a></li>
+				<li><a href="#schedule" class="smooth-scroll-middle">Schedule</a></li>
+				<li><a href="#trophy" class="smooth-scroll-middle">Trophy</a></li>
+				<li><a href="#clubs" class="smooth-scroll-middle">The Clubs</a></li>
+				<li><a href="#history" class="smooth-scroll-middle">History</a></li>
+				<li><a href="#competitors" class="smooth-scroll-middle">Competitors</a></li>
+				<li><a href="#photos" class="smooth-scroll-middle">Photos</a></li>
+			</ul>
+		</nav>
+
 		<!-- Wrapper -->
 		<div id="wrapper" class="divided">
 
 			<!-- ═══════════════════════════════════════════
 			     BANNER — Hero section
 			     ═══════════════════════════════════════════ -->
-			<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+			<section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right" id="banner">
 				<div class="content">
 					<h1>The Hartpanoag Classic</h1>
 					<p class="major">Golf's Greatest Test. Two clubs. Two teams. Thirty-six holes. One pair of chalices.</p>
@@ -266,7 +368,7 @@
 			<!-- ═══════════════════════════════════════════
 			     FORMAT
 			     ═══════════════════════════════════════════ -->
-			<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
+			<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in" id="format">
 				<div class="content">
 					<h2>The Format</h2>
 					<ul class="rules-list">
@@ -286,7 +388,7 @@
 			<!-- ═══════════════════════════════════════════
 			     SCHEDULE
 			     ═══════════════════════════════════════════ -->
-			<section class="wrapper style1 align-center">
+			<section class="wrapper style1 align-center" id="schedule">
 				<div class="inner">
 					<h2>Day of Schedule</h2>
 					<p>A full day of competitive golf, camaraderie, and tradition.</p>
@@ -336,7 +438,7 @@
 			<!-- ═══════════════════════════════════════════
 			     THE TROPHY
 			     ═══════════════════════════════════════════ -->
-			<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
+			<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="trophy">
 				<div class="content">
 					<h2>The Championship Chalices</h2>
 					<div class="trophy-callout">
@@ -352,7 +454,7 @@
 			<!-- ═══════════════════════════════════════════
 			     THE CLUBS
 			     ═══════════════════════════════════════════ -->
-			<section class="wrapper style1 align-center">
+			<section class="wrapper style1 align-center" id="clubs">
 				<div class="inner">
 					<h2>The Clubs</h2>
 					<p>Two storied private clubs. One rivalry.</p>
@@ -374,7 +476,7 @@
 			<!-- ═══════════════════════════════════════════
 			     TOURNAMENT HISTORY / RESULTS
 			     ═══════════════════════════════════════════ -->
-			<section class="wrapper style1 align-center">
+			<section class="wrapper style1 align-center" id="history">
 				<div class="inner">
 					<h2>Tournament History</h2>
 					<p>The Hartpanoag Classic is set to begin its storied history in Summer 2026. Results will be recorded here for posterity.</p>
@@ -406,7 +508,7 @@
 			<!-- ═══════════════════════════════════════════
 			     COMPETITORS
 			     ═══════════════════════════════════════════ -->
-			<section class="wrapper style1 align-center">
+			<section class="wrapper style1 align-center" id="competitors">
 				<div class="inner">
 					<h2>The Competitors</h2>
 					<p>Four golfers. Two clubs. One burning desire to claim the chalices.</p>
@@ -433,6 +535,8 @@
 										<span class="bio-value">TBD</span>
 										<span class="bio-label">Home Course</span>
 										<span class="bio-value">Hartford Golf Club</span>
+										<span class="bio-label">Handicap</span>
+										<span class="bio-value">TBD</span>
 									</div>
 									<div class="interesting-fact">Interesting fact coming soon.</div>
 								</div>
@@ -451,6 +555,8 @@
 										<span class="bio-value">TBD</span>
 										<span class="bio-label">Home Course</span>
 										<span class="bio-value">Hartford Golf Club</span>
+										<span class="bio-label">Handicap</span>
+										<span class="bio-value">TBD</span>
 									</div>
 									<div class="interesting-fact">Interesting fact coming soon.</div>
 								</div>
@@ -478,6 +584,8 @@
 										<span class="bio-value">Physician</span>
 										<span class="bio-label">Home Course</span>
 										<span class="bio-value">Wampanoag Country Club</span>
+										<span class="bio-label">Handicap</span>
+										<span class="bio-value">TBD</span>
 									</div>
 									<div class="interesting-fact">Interesting fact coming soon.</div>
 								</div>
@@ -496,6 +604,8 @@
 										<span class="bio-value">TBD</span>
 										<span class="bio-label">Home Course</span>
 										<span class="bio-value">Wampanoag Country Club</span>
+										<span class="bio-label">Handicap</span>
+										<span class="bio-value">TBD</span>
 									</div>
 									<div class="interesting-fact">Interesting fact coming soon.</div>
 								</div>
@@ -509,7 +619,7 @@
 			<!-- ═══════════════════════════════════════════
 			     PHOTO GALLERY
 			     ═══════════════════════════════════════════ -->
-			<section class="wrapper style1 align-center">
+			<section class="wrapper style1 align-center" id="photos">
 				<div class="inner">
 					<h2>Photos</h2>
 					<p>Photos from the Classic will appear here after the inaugural event.</p>
@@ -568,6 +678,18 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script>
+			// Mobile nav toggle
+			document.getElementById('nav-toggle').addEventListener('click', function() {
+				document.getElementById('nav-menu').classList.toggle('open');
+			});
+			// Close menu when a link is clicked
+			document.querySelectorAll('#nav-menu a').forEach(function(link) {
+				link.addEventListener('click', function() {
+					document.getElementById('nav-menu').classList.remove('open');
+				});
+			});
+		</script>
 
 	</body>
 </html>
